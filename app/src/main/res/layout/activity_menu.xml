@@ -58,11 +58,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:srcCompat="@drawable/icons8-add-user-male-48" />
+
     </TableRow>
 
 
