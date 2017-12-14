@@ -8,4 +8,55 @@
     tools:context="com.example.pranav.autodo.Menu">
 
 
+    <TableRow
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/Reminder"
+            android:layout_marginLeft="140dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Reminder" />
+    </TableRow>
+    <TableRow
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/Profile"
+            android:layout_marginLeft="140dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Profile" />
+    </TableRow>
+
+    <TableRow
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <Button
+            android:id="@+id/calllist"
+            android:layout_marginLeft="140dp"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:text="White List" />
+    </TableRow>
+    <TableRow
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <Button
+            android:id="@+id/Parental"
+            android:layout_marginLeft="140dp"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:text="Parental Control" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+
 </LinearLayout>
