@@ -6,7 +6,7 @@ import android.widget.Button;
 
 public class Menu extends AppCompatActivity {
     Button rem;
-    Button
+
 
 
     @Override
