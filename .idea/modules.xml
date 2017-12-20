@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AutoDO.iml" filepath="$PROJECT_DIR$/AutoDO.iml" />
+      <module fileurl="file://C:\Users\Praseetha Prakash\AndroidStudioProjects\MainProject01\AutoDO.iml" filepath="C:\Users\Praseetha Prakash\AndroidStudioProjects\MainProject01\AutoDO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MainProject01.iml" filepath="$PROJECT_DIR$/MainProject01.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

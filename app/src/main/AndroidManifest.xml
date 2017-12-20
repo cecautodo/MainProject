@@ -23,7 +23,8 @@
         </activity>
         <activity android:name=".Menu" />
         <activity android:name=".Register" />
-        <activity android:name=".parental_home"></activity>
+        <activity android:name=".parental_home" />
+        <activity android:name=".whitelist"></activity>
     </application>
 
 </manifest>
