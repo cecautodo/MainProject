@@ -22,7 +22,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Menu" />
-        <activity android:name=".Register"></activity>
+        <activity android:name=".Register" />
+        <activity android:name=".parental_home"></activity>
     </application>
 
 </manifest>
