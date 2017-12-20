@@ -28,6 +28,15 @@ public class Menu extends AppCompatActivity {
                 Intent n=new Intent(getApplicationContext(),parental_home.class);
                 startActivity(n);
             }
+
+        });
+        calllist.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent c=new Intent(getApplicationContext(),whitelist.class);
+                startActivity(c);
+
+            }
         });
 
     }
