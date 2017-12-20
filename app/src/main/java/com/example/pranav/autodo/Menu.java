@@ -27,6 +27,8 @@ public class Menu extends AppCompatActivity {
             public void onClick(View view) {
                 Intent n=new Intent(getApplicationContext(),parental_home.class);
                 startActivity(n);
+
+
             }
         });
 
