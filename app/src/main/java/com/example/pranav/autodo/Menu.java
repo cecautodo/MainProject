@@ -11,7 +11,7 @@ public class Menu extends AppCompatActivity {
     Button profile;
     Button calllist;
     Button parental;
-
+    Button Logout;
 
 
     @Override
@@ -22,6 +22,7 @@ public class Menu extends AppCompatActivity {
         profile=(Button) findViewById(R.id.Profile);
         calllist=(Button)findViewById(R.id.calllist);
         parental=(Button)findViewById(R.id.Parental);
+
         parental.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,6 +41,13 @@ public class Menu extends AppCompatActivity {
 
             }
         });
-
+    Logout=(Button)findViewById(R.id.Logout);
+    Logout.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent l=new Intent(getApplicationContext(),Home.class);
+            startActivity(l);
+        }
+    });
     }
 }

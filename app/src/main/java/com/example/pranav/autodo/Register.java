@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class Register extends AppCompatActivity {
     EditText first;
@@ -15,6 +16,7 @@ public class Register extends AppCompatActivity {
     EditText email;
     EditText phone;
     Button reg;
+    String pass1,pass2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +27,26 @@ public class Register extends AppCompatActivity {
         conf=(EditText)findViewById(R.id.confirm);
         email=(EditText)findViewById(R.id.email);
         phone=(EditText)findViewById(R.id.phone);
-        reg=(Button)findViewById(R.id.register);
-        reg.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent p=new Intent(getApplicationContext(),Menu.class);
-                startActivity(p);
-            }
-        });
-    }
+        reg = (Button) findViewById(R.id.register);
+
+
+
+            reg.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                if(pass.getText().toString().equals(conf.getText().toString())&&
+                        (first.getText().toString().equals("user"))&&
+                        last.getText().toString().equals("name")&&
+                        email.getText().toString().equals("user@gmail.com")&&
+                        phone.getText().toString().equals("12345")) {
+                    Intent p = new Intent(getApplicationContext(), Menu.class);
+                    startActivity(p);
+
+                    /*if(pass1.equals(pass2)) {
+                         }*/
+                }
+                }
+            });
+
+        }
 }

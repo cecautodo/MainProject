@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
-    EditText e1;
-    EditText e2;
+    EditText userid;
+    EditText pass;
     Button bregister;
     Button blogin;
 
@@ -18,21 +18,24 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        e1=(EditText)findViewById(R.id.editText1);
-        e2=(EditText)findViewById(R.id.editText2);
+        userid=(EditText)findViewById(R.id.editText1);
+        pass=(EditText)findViewById(R.id.editText2);
         bregister=(Button)findViewById(R.id.button1);
         blogin=(Button)findViewById(R.id.button2);
         blogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Chumma",Toast.LENGTH_SHORT).show();
-                Intent n= new Intent(getApplicationContext(),Menu.class);
-                startActivity(n);
+                //Toast.makeText(getApplicationContext(),"Chumma",Toast.LENGTH_SHORT).show();
+                if(userid.getText().toString().equals("12345")&&pass.getText().toString().equals("pass")) {
+                    Intent n = new Intent(getApplicationContext(), Menu.class);
+                    startActivity(n);
+                }
             }
         });
         bregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent m=new Intent(getApplicationContext(),Register.class);
                 startActivity(m);
             }
