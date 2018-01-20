@@ -34,16 +34,17 @@ public class Register extends AppCompatActivity {
             reg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                if(pass.getText().toString().equals(conf.getText().toString())&&
-                        (first.getText().toString().equals("user"))&&
-                        last.getText().toString().equals("name")&&
-                        email.getText().toString().equals("user@gmail.com")&&
-                        phone.getText().toString().equals("12345")) {
+                if(pass.getText().toString().equals(conf.getText().toString())) {
                     Intent p = new Intent(getApplicationContext(), Menu.class);
                     startActivity(p);
 
                     /*if(pass1.equals(pass2)) {
                          }*/
+                }
+                else{
+
+                Toast.makeText(getApplicationContext(),"password not match",Toast.LENGTH_LONG).show();
+                
                 }
                 }
             });

@@ -22,6 +22,12 @@ public class Menu extends AppCompatActivity {
         profile=(Button) findViewById(R.id.Profile);
         calllist=(Button)findViewById(R.id.calllist);
         parental=(Button)findViewById(R.id.Parental);
+        rem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), Reminder.class));
+            }
+        });
 
         parental.setOnClickListener(new View.OnClickListener() {
             @Override
