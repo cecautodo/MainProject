@@ -17,7 +17,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDlDAOY2DX_699aCxaTuNmbJ0fkF6pU4ps" />
@@ -33,7 +32,8 @@
         <activity android:name=".Register" />
         <activity android:name=".parental_home" />
         <activity android:name=".whitelist" />
-        <activity android:name=".Reminder"></activity>
+        <activity android:name=".Reminder" />
+        <activity android:name=".profile"></activity>
     </application>
 
 </manifest>

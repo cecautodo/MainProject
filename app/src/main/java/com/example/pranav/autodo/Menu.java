@@ -28,6 +28,12 @@ public class Menu extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), Reminder.class));
             }
         });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), profile.class));
+            }
+        });
 
         parental.setOnClickListener(new View.OnClickListener() {
             @Override
