@@ -14,7 +14,8 @@
             android:layout_marginLeft="240dp"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Logout" />
+            android:text="Logout"
+            />
 
 
     </TableRow>

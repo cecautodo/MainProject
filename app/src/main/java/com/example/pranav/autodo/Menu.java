@@ -9,6 +9,7 @@ import android.widget.Button;
 public class Menu extends AppCompatActivity {
     Button rem;
     Button profile;
+
     Button calllist;
     Button parental;
     Button Logout;

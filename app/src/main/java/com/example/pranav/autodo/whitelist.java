@@ -16,6 +16,7 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 public class whitelist extends AppCompatActivity {
 EditText ed_loc;
 String lati="",longi="",locname="";
+
    Button bt_cont,bt_calldone;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

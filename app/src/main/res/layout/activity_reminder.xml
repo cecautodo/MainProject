@@ -28,6 +28,7 @@
             android:layout_width="70dp"
             android:layout_height="30dp"
             android:textSize="15dp"
+
             android:text="Message" />
 
     </TableRow>

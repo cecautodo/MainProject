@@ -18,6 +18,8 @@ public class Reminder extends AppCompatActivity {
     EditText ed_loc, ed_msg;
     Button bt;
 
+
+
     String lati = "", longi = "", locname = "";
 
     @Override

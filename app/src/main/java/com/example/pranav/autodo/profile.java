@@ -87,6 +87,7 @@ public class profile extends AppCompatActivity {
                 longi = place.getLatLng().longitude + "";
                 locname = place.getName() + "";
                 profile_location.setText(locname);
+
             }
         }
 

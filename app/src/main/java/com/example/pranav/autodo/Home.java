@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 public class Home extends AppCompatActivity {
     EditText userid;
+
     EditText pass;
     Button bregister;
     Button blogin;
