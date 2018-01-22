@@ -36,6 +36,7 @@ String lati="",longi="",locname="";
            catch (GooglePlayServicesNotAvailableException e) {
                e.printStackTrace();
            } catch (GooglePlayServicesRepairableException e){
+
                e.printStackTrace();
            }
 
