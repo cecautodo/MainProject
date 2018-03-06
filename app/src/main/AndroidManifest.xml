@@ -19,7 +19,6 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-
             android:value="AIzaSyDlDAOY2DX_699aCxaTuNmbJ0fkF6pU4ps" />
 
         <activity android:name=".Home">
@@ -34,7 +33,11 @@
         <activity android:name=".parental_home" />
         <activity android:name=".whitelist" />
         <activity android:name=".Reminder" />
-        <activity android:name=".profile"></activity>
+        <activity android:name=".profile" />
+        <activity android:name=".ip" />
+        <activity
+            android:name=".parental_map"
+            android:label="@string/title_activity_parental_map"></activity>
     </application>
 
 </manifest>

@@ -25,10 +25,12 @@ public class Register extends AppCompatActivity {
     EditText phone;
     Button reg;
     String pass1,pass2;
-    String method = "login";
-    String namespace = "http://dbcon/";
+    String method = "register";
+    String namespace = "http://tempuri.org/";
     String soapaction = namespace + method;
-    String url = "";
+    String url = "http://192.168.43.97/WebService.asmx";
+    String first_name,last_name,Email,Phone,password;
+
 
 
     @Override
@@ -58,35 +60,43 @@ public class Register extends AppCompatActivity {
         reg.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                if(pass.getText().toString().equals(conf.getText().toString())) {
-                    Intent p = new Intent(getApplicationContext(), Menu.class);
-                    startActivity(p);
+
+
 
                     /*if(pass1.equals(pass2)) {
                          }*/
-                }
-                else{
 
-                Toast.makeText(getApplicationContext(),"password not match",Toast.LENGTH_LONG).show();
-                
-                }
+                    first_name = first.getText().toString();
+                    last_name = last.getText().toString();
+                    password = pass.getText().toString();
+                    Email = email.getText().toString();
+                    Phone = phone.getText().toString();
+                    if (pass.getText().toString().equals(conf.getText().toString())) {
+                        try {
+                            SoapObject sop = new SoapObject(namespace, method);
+                            sop.addProperty("first_name", first_name);
+                            sop.addProperty("last_name", last_name);
+                            sop.addProperty("Email", Email);
+                            sop.addProperty("password", password);
+                            sop.addProperty("Phoneno", Phone);
+                            SoapSerializationEnvelope env = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+                            env.setOutputSoapObject(sop);
+                            env.dotNet = true;
+                            HttpTransportSE hp = new HttpTransportSE(url);
+                            hp.call(soapaction, env);
+                            String result = env.getResponse().toString();
+                            if (result.equals("ok"))
+                            {
+                                Intent p = new Intent(getApplicationContext(), Menu.class);
+                                startActivity(p);
+                            }
+                        } catch (Exception e) {
+
+                            Toast.makeText(getApplicationContext(),"Failed"+e,Toast.LENGTH_LONG).show();
+                        }
 
 
-                    try {
-                        SoapObject sop = new SoapObject(namespace,method);
-                        sop.addProperty("First Name", first);
-                        sop.addProperty("Last Name", last);
-                        sop.addProperty("password",pass);
-                        sop.addProperty("Email",email);
-                        sop.addProperty("Phoneno",phone);
-                        SoapSerializationEnvelope env = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-                        env.setOutputSoapObject(sop);
-                        HttpTransportSE hp = new HttpTransportSE(url);
-                        hp.call(soapaction,env);
-                        String result = env.getResponse().toString();
-                    } catch (Exception e) {}
-
-
+                    }
                 }
             });
 

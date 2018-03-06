@@ -32,7 +32,27 @@
             android:text="Message" />
 
     </TableRow>
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
 
+
+        <EditText
+            android:id="@+id/ed_lati"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Lattitude" />
+
+        <EditText
+            android:id="@+id/ed_longi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Longitude" />
+    </TableRow>
     <TableRow
         android:layout_width="wrap_content"
         android:layout_marginTop="30dp"
@@ -58,6 +78,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Done" />
+
+
 
     </TableRow>
 

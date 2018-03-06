@@ -1,6 +1,8 @@
 package com.example.pranav.autodo;
 
 import android.content.Intent;
+import android.os.Build;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +15,19 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 
+import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.SoapObject;
+import org.ksoap2.serialization.SoapSerializationEnvelope;
+import org.ksoap2.transport.HttpTransportSE;
+
 public class whitelist extends AppCompatActivity {
 EditText ed_loc;
 String lati="",longi="",locname="";
+Button done;
+    String method = "register";
+    String namespace = "http://dbcon/";
+    String soapaction = namespace + method;
+    String url = "";
 
    Button bt_cont,bt_calldone;
     @Override
@@ -43,6 +55,34 @@ String lati="",longi="",locname="";
 
        }
    });
+        try {
+            if (Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+        } catch (Exception e) {
+
+        }
+bt_calldone.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        try {
+            SoapObject sop = new SoapObject(namespace,method);
+            sop.addProperty("Lattitude", lati);
+            sop.addProperty("Longitude", longi);
+
+
+            sop.addProperty("Loc_name",locname);
+            SoapSerializationEnvelope env = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            env.setOutputSoapObject(sop);
+            env.dotNet=true;
+            HttpTransportSE hp = new HttpTransportSE(url);
+            hp.call(soapaction,env);
+            String result = env.getResponse().toString();
+        } catch (Exception e) {}
+    }
+});
+
     }
 
 
