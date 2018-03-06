@@ -63,7 +63,12 @@ done=(Button)findViewById(R.id.bt_parent_done);
 done.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        Intent j=new Intent(getApplicationContext(),parental_home.class);
+        /*
+        Double x=Double.parseDouble(lattitude);
+        Double y=Double.parseDouble(longitude);
+        Toast.makeText(getApplicationContext(),"ok"+x,Toast.LENGTH_LONG).show();
+        */
+        Intent j=new Intent(getApplicationContext(),parental_map.class);
         j.putExtra("latitude",lattitude);
         j.putExtra("longitude",longitude);
         startActivity(j);
@@ -88,7 +93,7 @@ done.setOnClickListener(new View.OnClickListener() {
             HttpTransportSE hp = new HttpTransportSE(url);
             hp.call(soapaction,env);
             String result = env.getResponse().toString();
-           // Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
+           Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
             String temp[]=result.split("\\$");
             lattitude=temp[0];
             longitude=temp[1];
