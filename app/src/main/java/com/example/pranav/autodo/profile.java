@@ -97,9 +97,12 @@ public class profile extends AppCompatActivity {
                            mode="Silent";
                        }
                        Toast.makeText(getApplicationContext(),mode,Toast.LENGTH_SHORT).show();
-                        latitude=latitu.getText().toString();
-                        longiude=longitu.getText().toString();
-                       try {
+                            latitu.setText(lati);
+                            longitu.setText((longi));
+                           latitude = latitu.getText().toString();
+                           longiude = longitu.getText().toString();
+
+                        try {
                            SoapObject sop = new SoapObject(namespace,method);
                            sop.addProperty("Lattitude", latitude);
                            sop.addProperty("Longitude", longiude);

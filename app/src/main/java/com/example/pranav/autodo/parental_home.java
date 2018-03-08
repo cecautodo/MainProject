@@ -28,7 +28,7 @@ public class parental_home extends AppCompatActivity implements AdapterView.OnIt
     String soapaction = namespace + method;
     String url = "http://192.168.43.97/WebService.asmx";
     String[] Array = new String[]{"ajula", "pranav", "praseetha", "seetha"};
-    TextView child;
+   // TextView child;
     int user_id=1;
    public static String lattitude,longitude;
     Button done;
@@ -38,7 +38,7 @@ public class parental_home extends AppCompatActivity implements AdapterView.OnIt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parental_home);
 done=(Button)findViewById(R.id.bt_parent_done);
-        child=(TextView)findViewById(R.id.text_child);
+     //   child=(TextView)findViewById(R.id.text_child);
     sp=(Spinner) findViewById(R.id.spinner_child);
         ArrayAdapter<String> sr= new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,Array);
         sp.setAdapter(sr);
@@ -52,13 +52,13 @@ done=(Button)findViewById(R.id.bt_parent_done);
         } catch (Exception e) {
 
         }
-        child.setOnClickListener(new View.OnClickListener() {
+        /*child.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
-
+*/
 
 done.setOnClickListener(new View.OnClickListener() {
     @Override

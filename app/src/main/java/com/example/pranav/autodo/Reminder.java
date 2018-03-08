@@ -78,6 +78,8 @@ public class Reminder extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 msg=ed_msg.getText().toString();
+                latitu.setText(lati);
+                longitu.setText(longi);
                 lati=latitu.getText().toString();
                 longi=longitu.getText().toString();
                 try {
@@ -98,7 +100,11 @@ public class Reminder extends AppCompatActivity {
                     {
                         Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
                     }
-                } catch (Exception e) {}
+                } catch (Exception e) {
+
+                    Toast.makeText(getApplicationContext(),"Failed"+e,Toast.LENGTH_LONG).show();
+
+                }
 
             }
         });

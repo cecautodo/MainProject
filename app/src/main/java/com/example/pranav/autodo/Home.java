@@ -53,8 +53,8 @@ String user_id,password;
                // if(userid.getText().toString().equals("12345")&&pass.getText().toString().equals("pass")) {
 
               //  }
-                Intent n = new Intent(getApplicationContext(), Menu.class);
-                startActivity(n);
+              //  Intent n = new Intent(getApplicationContext(), Menu.class);
+              //  startActivity(n);
 
                 user_id=userid.getText().toString();
                 password=pass.getText().toString();
