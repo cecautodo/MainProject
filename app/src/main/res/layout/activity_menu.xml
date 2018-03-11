@@ -67,7 +67,22 @@
             android:text="Parental Control" />
     </TableRow>
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <TableRow
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <Button
+            android:id="@+id/bt_emerg"
+            android:layout_marginLeft="142dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Emergency" />
+    </TableRow>
 
 
 </LinearLayout>

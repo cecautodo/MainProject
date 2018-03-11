@@ -129,15 +129,17 @@ public class profile extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if(requestCode==1){
+
             if(resultCode==RESULT_OK){
                 Place place=PlacePicker.getPlace(profile.this, data);
+                StringBuilder stBuilder=new StringBuilder();
                 Toast.makeText(getApplicationContext(), place.getLatLng().latitude + ", he he " + place.getLatLng().longitude, Toast.LENGTH_SHORT).show();
                 lati = place.getLatLng().latitude + "";
                 longi = place.getLatLng().longitude + "";
                 locname = place.getName() + "";
                 profile_location.setText(locname);
 
-                            }
+                          }
         }
 
     }

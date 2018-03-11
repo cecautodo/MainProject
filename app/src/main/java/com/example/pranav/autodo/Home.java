@@ -17,6 +17,7 @@ import org.ksoap2.transport.HttpTransportSE;
 
 public class Home extends AppCompatActivity {
     EditText userid;
+    public static int bk;
     String method = "login";
     String namespace = "http://tempuri.org/";
     String soapaction = namespace + method;

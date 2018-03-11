@@ -13,16 +13,20 @@ public class Menu extends AppCompatActivity {
     Button calllist;
     Button parental;
     Button Logout;
-
+    Button emer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent s = new Intent(getApplicationContext(), LocationService.class);
+        startService(s);
         setContentView(R.layout.activity_menu);
         rem=(Button) findViewById(R.id.Reminder);
         profile=(Button) findViewById(R.id.Profile);
         calllist=(Button)findViewById(R.id.calllist);
         parental=(Button)findViewById(R.id.Parental);
+        emer=(Button)findViewById(R.id.bt_emerg);
+
         rem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -61,6 +65,15 @@ public class Menu extends AppCompatActivity {
             Intent l=new Intent(getApplicationContext(),Home.class);
             startActivity(l);
         }
+    });
+    emer.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent k=new Intent(getApplicationContext(),emergency_service.class);
+            startActivity(k);
+
+        }
+
     });
     }
 }

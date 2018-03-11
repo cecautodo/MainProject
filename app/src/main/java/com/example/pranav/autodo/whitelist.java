@@ -24,6 +24,8 @@ import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
 import org.ksoap2.transport.HttpTransportSE;
 
+import java.util.Random;
+
 public class whitelist extends AppCompatActivity {
 EditText ed_loc;
 String lati="",longi="",locname="";
@@ -32,6 +34,7 @@ Button done;
     String namespace = "http://dbcon/";
     String soapaction = namespace + method;
     String url = "";
+    public  static int loc_id;
 
    Button bt_cont,bt_calldone;
     private static final String TAG = whitelist.class.getSimpleName();
@@ -50,6 +53,11 @@ Button done;
    ed_loc.setOnClickListener(new View.OnClickListener() {
        @Override
        public void onClick(View view) {
+
+         //  Random r = new Random();
+           //loc_id=r.nextInt(1000-20)+20;
+           Toast.makeText(getApplicationContext(),loc_id,Toast.LENGTH_LONG).show();
+
            PlacePicker.IntentBuilder builder=new PlacePicker.IntentBuilder();
            try {
                startActivityForResult(builder.build(whitelist.this), 1);
@@ -95,7 +103,10 @@ bt_calldone.setOnClickListener(new View.OnClickListener() {
 bt_cont.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
-        startActivityForResult(new Intent(Intent.ACTION_PICK,ContactsContract.Contacts.CONTENT_URI),REQUEST_CODE_PICK_CONTACTS);
+       //Intent n=new Intent(new View(getApplicationContext(),contact_select.class));
+        // startActivityForResult(new Intent(Intent.ACTION_PICK,ContactsContract.Contacts.CONTENT_URI),REQUEST_CODE_PICK_CONTACTS);
+
+        startActivity(new Intent(getApplicationContext(), contact_select.class));
     }
 });
     }
@@ -185,4 +196,5 @@ bt_cont.setOnClickListener(new View.OnClickListener() {
         Log.d(TAG, "Contact Name: " + contactName);
 
     }
+
 }
