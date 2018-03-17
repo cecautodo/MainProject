@@ -1,5 +1,6 @@
 package com.example.pranav.autodo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.os.StrictMode;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,6 +36,7 @@ Button done;
     String namespace = "http://dbcon/";
     String soapaction = namespace + method;
     String url = "";
+    String phoneid;
     public  static int loc_id;
 
    Button bt_cont,bt_calldone;
@@ -83,6 +86,9 @@ Button done;
 bt_calldone.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
+        TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+
+        phoneid = telephonyManager.getDeviceId().toString();
         try {
             SoapObject sop = new SoapObject(namespace,method);
             sop.addProperty("Lattitude", lati);
@@ -90,6 +96,8 @@ bt_calldone.setOnClickListener(new View.OnClickListener() {
 
 
             sop.addProperty("Loc_name",locname);
+            sop.addProperty("imei",phoneid);
+
             SoapSerializationEnvelope env = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             env.setOutputSoapObject(sop);
             env.dotNet=true;

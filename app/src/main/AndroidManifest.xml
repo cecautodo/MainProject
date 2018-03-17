@@ -82,7 +82,8 @@
 
         <activity android:name=".LocationFullNews" />
         <activity android:name=".LocationNews" />
-        <activity android:name=".Locationnews"></activity>
+        <activity android:name=".Locationnews" />
+        <activity android:name=".add_trustdevice"></activity>
     </application>
 
 </manifest>

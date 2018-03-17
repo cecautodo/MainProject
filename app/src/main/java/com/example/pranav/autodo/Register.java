@@ -1,10 +1,12 @@
 package com.example.pranav.autodo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,7 @@ public class Register extends AppCompatActivity {
     String soapaction = namespace + method;
     String url = "http://192.168.43.97/WebService.asmx";
     String first_name,last_name,Email,Phone,password;
+    String phoneid;
 
 
 
@@ -64,7 +67,12 @@ public class Register extends AppCompatActivity {
 
 
                     /*if(pass1.equals(pass2)) {
+
                          }*/
+                    TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+
+                    phoneid = telephonyManager.getDeviceId().toString();
+                    Toast.makeText(getApplicationContext(),phoneid,Toast.LENGTH_LONG).show();
 
                     first_name = first.getText().toString();
                     last_name = last.getText().toString();
@@ -79,6 +87,7 @@ public class Register extends AppCompatActivity {
                             sop.addProperty("Email", Email);
                             sop.addProperty("password", password);
                             sop.addProperty("Phoneno", Phone);
+                            sop.addProperty("imei",phoneid);
                             SoapSerializationEnvelope env = new SoapSerializationEnvelope(SoapEnvelope.VER11);
                             env.setOutputSoapObject(sop);
                             env.dotNet = true;

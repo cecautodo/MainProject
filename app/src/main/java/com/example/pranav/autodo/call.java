@@ -94,12 +94,12 @@ public class call extends Service {
 		private int checknumber(String incoming) {
 			int a = 0;
 			try {
-				SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-				url = sh.getString("url", "");
+				//SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+				//url = sh.getString("url", "");
 				SoapObject request = new SoapObject(namespace, method);
 				request.addProperty("incoming", incoming);
 //			request.addProperty("l_name", LocationService.place);
-				request.addProperty("imei", sh.getString("imei", ""));
+				//request.addProperty("imei", sh.getString("imei", ""));
 //				Toast.makeText(getApplicationContext(), "incoming call number....." + incoming, Toast.LENGTH_LONG).show();
 //			request.addProperty("profid",Autospotty.pid);
 //				Toast.makeText(getApplicationContext(), "profile id for block:" + Autospotty.pid, Toast.LENGTH_LONG).show();

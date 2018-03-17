@@ -62,8 +62,8 @@ public class LocationService extends Service {
 	private Handler handler = new Handler();
 	public static Location curLocation;
 	public static boolean isService = true;
-	String method3 = "autosmslist";
-	String soapaction3 = namespace + method3;
+	//String method3 = "autosmslist";
+	//String soapaction3 = namespace + method3;
 	public static String lati = "", logi = "", place = "";
 	String[] id, num;
 	ArrayList<String> sms;
@@ -72,7 +72,7 @@ public class LocationService extends Service {
 	String method2 = "customlocationcheck_pf";
 	String soapaction2 = namespace + method2;
 	String method = "location";
-	String soap = namespace + method;
+	String soapaction = namespace + method;
 
 	LocationListener locationListener = new LocationListener() {
 
@@ -137,7 +137,7 @@ public class LocationService extends Service {
 
 	@Override
 	public void onStart(Intent intent, int startId) {
-//	   Toast.makeText(this, "Start services", Toast.LENGTH_SHORT).show();
+   Toast.makeText(this, "Start services", Toast.LENGTH_SHORT).show();
 
 		String provider = Settings.Secure.getString(getContentResolver(), Settings.Secure.LOCATION_PROVIDERS_ALLOWED);
 
@@ -196,10 +196,10 @@ public class LocationService extends Service {
 				lati = String.valueOf(curLocation.getLatitude());
 				logi = String.valueOf(curLocation.getLongitude());
 
-				//updatelocation(lati, logi);
+				updatelocation(lati, logi);
 
 				// Toast.makeText(getApplicationContext(),URL+" received", Toast.LENGTH_SHORT).show();
-				//Toast.makeText(getApplicationContext(),"\nlat.. and longi.."+ lati+"..."+logi, Toast.LENGTH_LONG).show();
+			//	Toast.makeText(getApplicationContext(),"\nlat.. and longi.."+ lati+"..."+logi, Toast.LENGTH_LONG).show();
 
 				String loc = "";
 				String address = "";
@@ -216,7 +216,7 @@ public class LocationService extends Service {
 
 						place = addresses.get(0).getLocality().toString();
 
-						//Toast.makeText(getApplicationContext(),place,Toast.LENGTH_LONG).show();
+					//	Toast.makeText(getApplicationContext(),place,Toast.LENGTH_LONG).show();
 					} else {
 					}
 				} catch (IOException e) {
@@ -225,23 +225,23 @@ public class LocationService extends Service {
 				// Toast.makeText(getBaseContext(), "locality-"+place, Toast.LENGTH_SHORT).show();
 				//  place="palakkad";
 				// if(!place.equalsIgnoreCase(tmplocs)){
-				checkPf(place);
+				checkPf();
 				//  }
 				tmplocs = place;
 			}
 			handler.postDelayed(GpsFinder, 45000);// register again to start after 20 seconds...
 		}
 
-		private void checkPf(String place) {
+		private void checkPf() {
 			try {
-				SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-				url = sh.getString("url", "");
-				String imei = sh.getString("imei", "");
+				//SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			//	url = sh.getString("url", "");
+				//String imei = sh.getString("imei", "");
 				SoapObject request = new SoapObject(namespace, method2);
 				request.addProperty("lati", LocationService.lati);
 				request.addProperty("longi", LocationService.logi);
 //				request.addProperty("l_name", place);
-				request.addProperty("imei", imei);
+				request.addProperty("imei", phoneid);
 				SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 				envelope.setOutputSoapObject(request);
 				envelope.dotNet = true;
@@ -250,20 +250,20 @@ public class LocationService extends Service {
 
 				String response = envelope.getResponse().toString();
 
-//				Toast.makeText(getApplicationContext(), "Response jab : " + response, Toast.LENGTH_SHORT).show();
+			//	Toast.makeText(getApplicationContext(), "Response jab : " + response, Toast.LENGTH_SHORT).show();
 
 				if (!response.equalsIgnoreCase("failed")) {
 					if (response.equalsIgnoreCase("anytype{}")) {
-						Toast.makeText(getApplicationContext(), "No data found !", Toast.LENGTH_SHORT).show();
+				//		Toast.makeText(getApplicationContext(), "No data found !", Toast.LENGTH_SHORT).show();
 					} else {
-					Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
-						String[] r = response.split("#");
-						walaper = r[2];
-						mode = r[0];
-						wifi = r[1];
-						r_tone = r[3];
-						calblk = r[4];
-						autosms = r[5];
+				//	Toast.makeText(getApplicationContext(), response, Toast.LENGTH_LONG).show();
+						String[] r = response.split("\\$");
+						walaper = r[0];
+						mode = r[2];
+						wifi = r[3];
+						r_tone = r[1];
+						//calblk = r[4];
+						//autosms = r[5];
 						//sms1=r[7];
 						//Autospotty.pid = Integer.parseInt(locid);
 						//Toast.makeText(getApplicationContext(),response,Toast.LENGTH_LONG).show();
@@ -306,30 +306,30 @@ public class LocationService extends Service {
 								Toast.makeText(getApplicationContext(), "Ringtone : " + e.toString(), Toast.LENGTH_SHORT).show();
 							}
 						}
-						if (calblk.equals("on")) {
+				/*		if (calblk.equals("on")) {
 							Home.bk = 1;
 							startService(new Intent(getApplicationContext(), call.class));
 						} else {
 							Home.bk = 0;
 							stopService(new Intent(getApplicationContext(), call.class));
 						}
-						if (autosms.equalsIgnoreCase("on")) {
+			/*			if (autosms.equalsIgnoreCase("on")) {
 //							Toast.makeText(getApplicationContext(), "inside autosms", Toast.LENGTH_LONG).show();
 
-							getnumbers();
+						//	getnumbers();
 
 							Log.d("message", sms1);
-						}
+						}*/
 					}
 				}
 			} catch (Exception e) {
-//				Toast.makeText(getApplicationContext(), "error : Loc " + e.getMessage(), Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "error : Loc " + e.getMessage(), Toast.LENGTH_LONG).show();
 //				Log.v("jjjjjjjjjjjjjjjjjjjj", e.toString());
 				//e.printStackTrace();
 			}
 		}
 
-		private void getnumbers() {
+	/*	private void getnumbers() {
 			try {
 //				Log.d("get numbers function", msg);
 //				Toast.makeText(getApplicationContext(), "inside getnumbers", Toast.LENGTH_LONG).show();
@@ -341,11 +341,11 @@ public class LocationService extends Service {
 					String imei = sh.getString("imei", "");
 
 					SoapObject request = new SoapObject(namespace, method3);
-					request.addProperty("imei", imei);
+					request.addProperty("imei", phoneid);
 
 					SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 					envelope.setOutputSoapObject(request);
-//					envelope.dotNet = true;
+					envelope.dotNet = true;
 
 					HttpTransportSE htse = new HttpTransportSE(url);
 					htse.call(soapaction3, envelope);
@@ -386,9 +386,9 @@ public class LocationService extends Service {
 			} catch (Exception e) {
 
 			}
-		}
+		}*/
 
-		private void deleteSms(String aid)
+	/*	private void deleteSms(String aid)
 		{
 			String meth = "removeFromList";
 			String soapact = namespace + meth;
@@ -410,7 +410,7 @@ public class LocationService extends Service {
 			} catch (Exception e) {
 
 			}
-		}
+		}*/
 	};
 
 	private Location getBestLocation() {
@@ -459,25 +459,30 @@ public class LocationService extends Service {
 		SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 		try {
 			//SharedPreferences sh=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-			url = sh.getString("url", "");
-			String imei = sh.getString("imei", "");
+			//url = sh.getString("url", "");
+			//String imei = sh.getString("imei", "");
 			SoapObject sop = new SoapObject(namespace, method);
 
 			sop.addProperty("longit", longitude);
 			sop.addProperty("lat", latitude);
-			sop.addProperty("imei", imei);
+			sop.addProperty("imei", phoneid);
+			//Toast.makeText(getApplicationContext(),longitude,Toast.LENGTH_SHORT).show();
 
+//			Toast.makeText(getApplicationContext(),latitude,Toast.LENGTH_SHORT).show();
+
+//			Toast.makeText(getApplicationContext(),phoneid,Toast.LENGTH_SHORT).show();
 			SoapSerializationEnvelope sen = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 			sen.setOutputSoapObject(sop);
 
 			HttpTransportSE http = new HttpTransportSE(url);
-			http.call(soap, sen);
+			http.call(soapaction, sen);
 
 			String tyy = sen.getResponse().toString();
+			Toast.makeText(getApplicationContext(),tyy,Toast.LENGTH_LONG).show();
 
 		} catch (Exception ex) {
 			ex.printStackTrace();
-			//Toast.makeText(getApplicationContext(), "error"+ex, Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(), "error"+ex, Toast.LENGTH_LONG).show();
 		}
 	}
 

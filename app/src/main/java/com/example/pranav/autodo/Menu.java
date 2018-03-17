@@ -5,15 +5,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class Menu extends AppCompatActivity {
     Button rem;
     Button profile;
 
-    Button calllist;
+    Button calllist,add_trust;
     Button parental;
-    Button Logout;
-    Button emer;
+    //Button Logout;
+    //Button emer;
+    ImageButton logout;
+    ImageButton emerg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,11 @@ public class Menu extends AppCompatActivity {
         profile=(Button) findViewById(R.id.Profile);
         calllist=(Button)findViewById(R.id.calllist);
         parental=(Button)findViewById(R.id.Parental);
-        emer=(Button)findViewById(R.id.bt_emerg);
+add_trust=(Button)findViewById(R.id.bt_addtrust);
+      //  emer=(Button)findViewById(R.id.bt_emerg);
 
+        logout=(ImageButton)findViewById(R.id.logout);
+        emerg=(ImageButton)findViewById(R.id.imgbt_emergency);
         rem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,15 +64,15 @@ public class Menu extends AppCompatActivity {
 
             }
         });
-    Logout=(Button)findViewById(R.id.Logout);
-    Logout.setOnClickListener(new View.OnClickListener() {
+   // Logout=(Button)findViewById(R.id.Logout);
+    logout.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent l=new Intent(getApplicationContext(),Home.class);
             startActivity(l);
         }
     });
-    emer.setOnClickListener(new View.OnClickListener() {
+    emerg.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             Intent k=new Intent(getApplicationContext(),emergency_service.class);
@@ -74,6 +80,13 @@ public class Menu extends AppCompatActivity {
 
         }
 
+    });
+    add_trust.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent w=new Intent(getApplicationContext(),add_trustdevice.class);
+            startActivity(w);
+        }
     });
     }
 }

@@ -1,16 +1,18 @@
 package com.example.pranav.autodo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.telephony.TelephonyManager;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
@@ -26,13 +28,13 @@ public class Reminder extends AppCompatActivity {
 
     EditText ed_loc, ed_msg,latitu,longitu;
     String msg;
-
+String phoneid;
      Button bt;
     String method = "reminder";
     String namespace = "http://tempuri.org/";
     String soapaction = namespace + method;
     String url = "http://192.168.43.97/WebService.asmx";
-
+String status="1";
 
 
     int request=1;
@@ -82,13 +84,19 @@ public class Reminder extends AppCompatActivity {
                 longitu.setText(longi);
                 lati=latitu.getText().toString();
                 longi=longitu.getText().toString();
+              //TelephonyManager telephonyManager=(TelephonyManager)getApplicationContext().getSystemService(Context.TELECOM_SERVICE);
+                TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+
+                phoneid = telephonyManager.getDeviceId().toString();
                 try {
                     SoapObject sop = new SoapObject(namespace,method);
                     //sop.addProperty("user_id", userid);
                     sop.addProperty("Lattitude", lati);
                     sop.addProperty("Longitude", longi);
                     sop.addProperty("Message",msg);
-
+                    sop.addProperty("imei",phoneid);
+                sop.addProperty("status",status);
+             //   sop.addProperty("imei",phoneid);
 //                    sop.addProperty("Loc_name",locname);
                     SoapSerializationEnvelope env = new SoapSerializationEnvelope(SoapEnvelope.VER11);
                     env.setOutputSoapObject(sop);

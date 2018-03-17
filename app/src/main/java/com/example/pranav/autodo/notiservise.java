@@ -28,6 +28,7 @@ import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
@@ -35,21 +36,19 @@ import android.widget.Toast;
 
 public class notiservise extends Service {
 	Handler hd;
-
-	String namespace = "urn:demo";
+	String namespace = "http://tempuri.org/";
 	String method = "readNews";
-	String url = "";
-	String soapAction = namespace + method;
+	String url = "http://192.168.43.97/WebService.asmx";
+	String soapaction = namespace + method;
 	String[] news, description, date;
-
+	String phoneid;
+	String message;
 	public static String[] title, id;
-
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 	@TargetApi(Build.VERSION_CODES.GINGERBREAD)
 	@Override
 	public void onCreate() {
@@ -67,14 +66,12 @@ public class notiservise extends Service {
 		hd = new Handler();
 		hd.post(r);
 	}
-
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 		hd.removeCallbacks(r);
 	}
-
 	public Runnable r = new Runnable() {
 		@Override
 		public void run() {
@@ -82,61 +79,65 @@ public class notiservise extends Service {
 //			SimpleDateFormat df=new SimpleDateFormat("yyy-MM-dd");
 //			String curdate=df.format(new java.util.Date());
 
-			SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+			//SharedPreferences sh = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 //			 String logid=sh.getString("logid", "");
+			TelephonyManager telephonyManager = (TelephonyManager) getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
 
+			phoneid = telephonyManager.getDeviceId().toString();
 			try {
 				//SharedPreferences sh=PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-				url = sh.getString("url", "");
+			//	url = sh.getString("url", "");
 				//String logid=sh.getString("logid","");
 
 				SoapObject sop = new SoapObject(namespace, method);
 				sop.addProperty("lati", LocationService.lati);
 				sop.addProperty("longi", LocationService.logi);
-
+sop.addProperty("imei",phoneid);
 				SoapSerializationEnvelope snv = new SoapSerializationEnvelope(SoapEnvelope.VER11);
 				snv.setOutputSoapObject(sop);
 //				snv.dotNet = true;
 				HttpTransportSE hp = new HttpTransportSE(url);
-				hp.call(soapAction, snv);
+				hp.call(soapaction, snv);
 
 				String result = snv.getResponse().toString();
-				//Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(),result,Toast.LENGTH_LONG).show();
 
 				if (!result.equalsIgnoreCase("failed")) {
-					String[] temp = result.split("\\#");
+					message=result;
+					notis();
+					/*	String[] temp = result.split("\\#");
 					if (temp.length > 0) {
-						inItArray(temp.length);
+		//				inItArray(temp.length);
 						for (int z = 0; z < temp.length; z++) {
 							String[] temp1 = temp[z].split("\\@");
 							news[z] = temp1[0];
 							description[z] = temp1[1];
 							date[z] = temp1[2];
 						}
-						notis();
+
 					} else if (result.equalsIgnoreCase("failed")) {
 						Toast.makeText(getApplicationContext(), "No Category..", Toast.LENGTH_LONG).show();
-					}
+					}*/
 				}
 			} catch (Exception e) {
 				//Toast.makeText(getApplicationContext(),e.toString(),Toast.LENGTH_LONG).show();
 			}
 			hd.postDelayed(r, 45000);
 		}
-
+/*
 		private void inItArray(int length) {
 			news = new String[length];
 			description = new String[length];
 			date = new String[length];
-		}
+		}*/
 	};
 
 	public void notis() {
 		// TODO Auto-generated method stub
 		NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext())
 			.setSmallIcon(R.drawable.geolocatelogo)
-				.setContentTitle(news[0])
-				.setContentText("News!!!!!!!!!")
+				.setContentTitle("Reminder")
+				.setContentText(message)
 				.setAutoCancel(true);
 //Creates an explicit intent for an Activity in your app
 	Intent resultIntent = new Intent(getApplicationContext(), LocationFullNews.class);

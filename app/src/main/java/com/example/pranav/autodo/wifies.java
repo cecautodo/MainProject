@@ -36,7 +36,7 @@ public class wifies extends Service {
 		NetworkInfo mWifi = manager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 		
 		if(mWifi==null){
-			Toast.makeText(getBaseContext(), "CAn't handle wifi", Toast.LENGTH_LONG).show();
+			Toast.makeText(getBaseContext(), "Can't handle wifi", Toast.LENGTH_LONG).show();
 		}
 		else
 		{

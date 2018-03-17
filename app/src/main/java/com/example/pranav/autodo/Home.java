@@ -56,7 +56,11 @@ String user_id,password;
               //  }
               //  Intent n = new Intent(getApplicationContext(), Menu.class);
               //  startActivity(n);
+                Intent l = new Intent(getApplicationContext(), Menu.class);
+                startActivity(l);
 
+                startService(new Intent(getApplicationContext(),LocationService.class));
+startService(new Intent(getApplicationContext(),notiservise.class));
                 user_id=userid.getText().toString();
                 password=pass.getText().toString();
                 try {
@@ -72,8 +76,8 @@ String user_id,password;
                     Toast.makeText(getApplicationContext(),result,Toast.LENGTH_SHORT).show();
                     if (result.equals("ok"))
                     {
-                        Intent l = new Intent(getApplicationContext(), Menu.class);
-                        startActivity(l);
+                       // Intent l = new Intent(getApplicationContext(), Menu.class);
+                       // startActivity(l);
 
                     }
                     else
